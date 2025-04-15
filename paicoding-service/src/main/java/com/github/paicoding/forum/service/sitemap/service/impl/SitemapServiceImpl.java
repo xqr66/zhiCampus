@@ -186,7 +186,10 @@ public class SitemapServiceImpl implements SitemapService {
         // 用户的当日访问计数+1
         Long todayUserVisitCnt = RedisClient.hIncr(todayKey, "pv_" + visitIp, 1);
 
+        // redis计数批处理，提高效率
         RedisClient.PipelineAction pipelineAction = RedisClient.pipelineAction();
+
+
         if (globalUserVisitCnt == 1) {
             // 站点新用户
             // 今日的uv + 1
@@ -194,10 +197,11 @@ public class SitemapServiceImpl implements SitemapService {
                     , (connection, key, field) -> {
                         connection.hIncrBy(key, field, 1);
                     });
+            // 今日用户访问页面的uv + 1
             pipelineAction.add(todayKey, "uv_" + path
                     , (connection, key, field) -> connection.hIncrBy(key, field, 1));
 
-            // 全局站点的uv
+            // 站点全局的uv
             pipelineAction.add(globalKey, "uv", (connection, key, field) -> connection.hIncrBy(key, field, 1));
             pipelineAction.add(globalKey, "uv_" + path, (connection, key, field) -> connection.hIncrBy(key, field, 1));
         } else if (todayUserVisitCnt == 1) {

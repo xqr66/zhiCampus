@@ -70,7 +70,8 @@ public class QuickForumApplication implements WebMvcConfigurer, ApplicationRunne
     }
 
     /**
-     * 兼容本地启动时8080端口被占用的场景; 只有dev启动方式才做这个逻辑
+     * 兼容本地启动时8080端口被占用的场景;当8080被占用，找一个未被占用的端口
+     * 只有dev启动方式才做这个逻辑
      *
      * @return
      */
