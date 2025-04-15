@@ -29,6 +29,8 @@ spring:
         username: root
         password:
   redis:
+    # 是否开启Redis-默认false(未开启)
+    isOpen: true
     host: localhost
     port: 6379
     password: rxq20030705123

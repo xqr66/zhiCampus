@@ -135,7 +135,7 @@ public class ReqRecordFilter implements Filter {
             stopWatch.stop();
 
             stopWatch.start("登录用户信息");
-            // 初始化登录信息,如果cookie中有合法的JWT就获取userid，初始化登录
+            // 初始化登录信息,如果cookie中有合法的JWT并且redis中该token没有过期就获取userid，初始化登录
             globalInitService.initLoginUser(reqInfo);
             stopWatch.stop();
 

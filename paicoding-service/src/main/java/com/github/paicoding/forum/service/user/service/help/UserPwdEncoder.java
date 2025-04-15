@@ -40,6 +40,7 @@ public class UserPwdEncoder {
         } else {
             plainPwd = plainPwd + salt;
         }
+        System.out.println("passward:" + DigestUtils.md5DigestAsHex(plainPwd.getBytes(StandardCharsets.UTF_8)));
         return DigestUtils.md5DigestAsHex(plainPwd.getBytes(StandardCharsets.UTF_8));
     }
 

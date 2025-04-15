@@ -105,7 +105,7 @@ public class RabbitmqServiceImpl implements RabbitmqService {
         Integer stepTotal = 1;
         Integer step = 0;
 
-        // TODO: 这种方式非常 Low，后续会改造成阻塞 I/O 模式
+
         while (true) {
             step++;
             try {

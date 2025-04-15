@@ -46,8 +46,8 @@ paicoding:
     deny: # 自定义的敏感词，英文逗号分割
     allow: 国,制作,码,亚洲,中国,公司,简历,性,国研,鬼,国庆,用户,扑克 # 自定义的非敏感词，英文逗号分割
   jwt:
-    issuer: pai_coding # 签发者
-    secret: hello_world # 签名密钥
+    issuer: zhi_campus # 签发者
+    secret: scu # 签名密钥
     expire: 2592000000 # jwt的有效期，默认30天
 
 # 默认的数据库名

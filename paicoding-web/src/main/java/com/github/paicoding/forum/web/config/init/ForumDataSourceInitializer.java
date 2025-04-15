@@ -56,8 +56,8 @@ public class ForumDataSourceInitializer {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         // 下面这种是根据sql文件来进行初始化；改成 liquibase 之后不再使用这种方案，由liquibase来统一管理表结构数据变更
         if (initEnable && !liquibaseEnable) {
-            // fixme: 首次启动时, 对于不支持liquibase的数据库，如mariadb，采用主动初始化
-            // fixme 这种方式不支持后续动态的数据表结构更新、数据变更
+            // 首次启动时, 对于不支持liquibase的数据库，如mariadb，采用主动初始化
+            // 这种方式不支持后续动态的数据表结构更新、数据变更
             populator.addScripts(DbChangeSetLoader.loadDbChangeSetResources(liquibaseChangeLog).toArray(new ClassPathResource[]{}));
             populator.setSeparator(";");
             log.info("非Liquibase管理数据库，请手动执行数据库表初始化!");
@@ -92,7 +92,6 @@ public class ForumDataSourceInitializer {
 
         // 非首次启动时，判断记录对应的md5是否准确
         if (Objects.equals(record.get(0).get("MD5SUM"), "8:a1a2d9943b746acf58476ae612c292fc")) {
-            // 这里主要是为了解决 <a href="https://github.com/itwanger/paicoding/issues/71">#71</a> 这个问题
             jdbcTemplate.update("update DATABASECHANGELOG set MD5SUM='8:bb81b67a5219be64eff22e2929fed540' where ID='00000000000020'");
         }
         return false;
@@ -100,7 +99,7 @@ public class ForumDataSourceInitializer {
 
 
     /**
-     * 数据库不存在时，尝试创建数据库
+     * 使用jdbc实现，数据库不存在时，尝试创建数据库
      */
     private boolean autoInitDatabase() {
         // 查询失败，可能是数据库不存在，尝试创建数据库之后再次测试

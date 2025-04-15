@@ -167,6 +167,8 @@ public class LoginServiceImpl implements LoginService {
 
         // 登录成功，返回对应的session
         ReqInfoContext.getReqInfo().setUserId(userId);
+
+        // 生成JWT并加入到redis key:token value: userId
         return userSessionHelper.genSession(userId);
     }
 

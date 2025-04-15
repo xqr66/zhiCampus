@@ -42,7 +42,6 @@ public class LoginRestController {
 
     /**
      * 用户名和密码登录
-     * 可以根据星球编号/用户名进行密码匹配
      */
     @PostMapping("/login/username")
     public ResVo<Boolean> login(UserPwdLoginReq loginReq,

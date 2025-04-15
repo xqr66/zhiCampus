@@ -1,5 +1,6 @@
 package com.github.paicoding.forum.service.article.service.impl;
 
+import cn.hutool.json.JSONUtil;
 import com.github.paicoding.forum.api.model.enums.CollectionStatEnum;
 import com.github.paicoding.forum.api.model.enums.CommentStatEnum;
 import com.github.paicoding.forum.api.model.enums.DocumentTypeEnum;
@@ -16,6 +17,7 @@ import com.github.paicoding.forum.api.model.vo.article.dto.SimpleArticleDTO;
 import com.github.paicoding.forum.api.model.vo.article.dto.TagDTO;
 import com.github.paicoding.forum.api.model.vo.constants.StatusEnum;
 import com.github.paicoding.forum.api.model.vo.user.dto.BaseUserInfoDTO;
+import com.github.paicoding.forum.core.cache.RedisClient;
 import com.github.paicoding.forum.core.util.ArticleUtil;
 import com.github.paicoding.forum.core.util.SpringUtil;
 import com.github.paicoding.forum.service.article.conveter.ArticleConverter;
@@ -26,6 +28,7 @@ import com.github.paicoding.forum.service.article.service.ArticleReadService;
 import com.github.paicoding.forum.service.article.service.CategoryService;
 import com.github.paicoding.forum.service.constant.EsFieldConstant;
 import com.github.paicoding.forum.service.constant.EsIndexConstant;
+import com.github.paicoding.forum.service.constant.RedisConstant;
 import com.github.paicoding.forum.service.statistics.service.CountService;
 import com.github.paicoding.forum.service.user.repository.entity.UserFootDO;
 import com.github.paicoding.forum.service.user.service.UserFootService;
@@ -42,6 +45,8 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -54,6 +59,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -91,6 +97,12 @@ public class ArticleReadServiceImpl implements ArticleReadService {
     @Value("${elasticsearch.open:false}")
     private Boolean openES;
 
+    @Value("${spring.redis.isOpen:false}")
+    private Boolean openRedis;
+
+    @Autowired(required = false)
+    private RedissonClient redissonClient;
+
     @Override
     public ArticleDO queryBasicArticle(Long articleId) {
         return articleDao.getById(articleId);
@@ -109,18 +121,73 @@ public class ArticleReadServiceImpl implements ArticleReadService {
 
     @Override
     public ArticleDTO queryDetailArticleInfo(Long articleId) {
-        ArticleDTO article = articleDao.queryArticleDetail(articleId);
+        ArticleDTO article = null;
+        // 兼容是否开启Redis
+        if (openRedis) {
+            String redisCacheKey = RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_CACHE + articleId;
+            String articleStr = RedisClient.getStr(redisCacheKey);
+
+            if (!org.springframework.util.ObjectUtils.isEmpty(articleStr)) {
+                article = JSONUtil.toBean(articleStr, ArticleDTO.class);
+            } else {
+                // 存在缓存击穿问题，引入分布式锁
+                article = this.checkArticleByRedisson(articleId);
+
+            }
+            if (article != null) {
+                RedisClient.setStr(redisCacheKey, JSONUtil.toJsonStr(article));
+            }
+
+        } else {
+            article = articleDao.queryArticleDetail(articleId);
+        }
+
         if (article == null) {
             throw ExceptionUtil.of(StatusEnum.ARTICLE_NOT_EXISTS, articleId);
         }
-        // 更新分类相关信息
+        // 添加分类相关信息
         CategoryDTO category = article.getCategory();
         category.setCategory(categoryService.queryCategoryName(category.getCategoryId()));
 
-        // 更新标签信息
+        // 添加标签信息
         article.setTags(articleTagDao.queryArticleTagDetails(articleId));
         return article;
     }
+
+    /**
+     * Redis分布式锁使用redisson实现
+     *
+     * @param articleId
+     * @return ArticleDTO
+     */
+    private ArticleDTO checkArticleByRedisson(Long articleId) {
+
+        ArticleDTO article = null;
+        String redisLockKey =
+                RedisConstant.REDIS_ZHI + RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_LOCK + articleId;
+        RLock lock = redissonClient.getLock(redisLockKey);
+
+        try {
+            //尝试加锁,最大等待时间3秒，上锁30秒自动解锁
+            if (lock.tryLock(3, 30, TimeUnit.SECONDS)) {
+                article = articleDao.queryArticleDetail(articleId);
+            } else {
+                // 未获得分布式锁线程睡眠一下；然后再去获取数据
+                Thread.sleep(200);
+                this.queryDetailArticleInfo(articleId);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            //判断该lock是否已经锁 并且 锁是否是自己的
+            if (lock.isLocked() && lock.isHeldByCurrentThread()) {
+                lock.unlock();
+            }
+
+        }
+        return article;
+    }
+
 
     /**
      * 查询文章所有的关联信息，正文，分类，标签，阅读计数，当前登录用户是否点赞、评论过
@@ -204,7 +271,7 @@ public class ArticleReadServiceImpl implements ArticleReadService {
 
     @Override
     public List<SimpleArticleDTO> querySimpleArticleBySearchKey(String key) {
-        // todo 当key为空时，返回热门推荐
+        // 当key为空时，返回热门推荐（目前为点赞数量最多的文章）
         if (StringUtils.isBlank(key)) {
             return Collections.emptyList();
         }
@@ -214,7 +281,7 @@ public class ArticleReadServiceImpl implements ArticleReadService {
             return records.stream().map(s -> new SimpleArticleDTO().setId(s.getId()).setTitle(s.getTitle()))
                     .collect(Collectors.toList());
         }
-        // TODO ES整合
+        // TODO 整合ES来做搜索
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(key,
                 EsFieldConstant.ES_FIELD_TITLE,

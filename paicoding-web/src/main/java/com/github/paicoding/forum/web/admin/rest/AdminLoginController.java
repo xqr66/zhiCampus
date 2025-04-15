@@ -54,6 +54,7 @@ public class AdminLoginController {
                                         HttpServletResponse response) {
         String username = request.getParameter("username");
         String pwd = request.getParameter("password");
+        //
         String session = loginOutService.loginByUserPwd(username, pwd);
         if (StringUtils.isNotBlank(session)) {
             // cookie中写入用户登录信息
