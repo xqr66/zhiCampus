@@ -382,6 +382,58 @@ public class RedisClient {
     }
 
 
+
+    /**
+     * 获取ZSet中分数在[min, max]范围内的元素数量
+     *
+     * @param key Redis键
+     * @param min 最小分数(包含)
+     * @param max 最大分数(包含)
+     * @return 元素数量
+     */
+    public static Long zCountByScore(String key, double min, double max) {
+        return template.execute(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis(RedisConnection connection) throws DataAccessException {
+                return connection.zCount(keyBytes(key), min, max);
+            }
+        });
+    }
+
+
+    /**
+     * 向ZSet中添加元素
+     * @param key Redis键
+     * @param member 成员名称
+     * @param score 分数
+     * @return 是否添加成功
+     */
+    public static Boolean zAdd(String key, String member, double score) {
+        return template.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+
+                return connection.zAdd(keyBytes(key), score, valBytes(member));
+            }
+        });
+    }
+
+    /**
+     * 删除整个ZSet键
+     * @param key Redis键
+     * @return 是否删除成功(键存在并被删除返回true，键不存在返回false)
+     */
+    public static Boolean zRemoveKey(String key) {
+        return template.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                Long deleted = connection.del(keyBytes(key));
+                return deleted != null && deleted > 0;
+            }
+        });
+    }
+
+
     public static <T> Long lPush(String key, T val) {
         return template.execute(new RedisCallback<Long>() {
             @Override

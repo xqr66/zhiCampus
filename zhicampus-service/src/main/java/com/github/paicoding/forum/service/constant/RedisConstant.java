@@ -1,9 +1,9 @@
 package com.github.paicoding.forum.service.constant;
 
 /**
- * ES 过滤字段常量
+ * Redis字段常量
  *
- * @ClassName: EsFieldConstant
+ * @ClassName: RedisConstant
  * @Author: ygl
  * @Date: 2023/6/2 06:39
  * @Version: 1.0
@@ -29,5 +29,15 @@ public class RedisConstant {
      * 分布式锁
      */
     public static final String REDIS_LOCK = "lock:";
+
+    /**
+     * 缓存文章过期时间
+     */
+    public static final long ARTICLE_EXPIRE_TIME = (long) 30 * 60;
+
+    /**
+     * 登录验证码
+     */
+    public static final String LOGIN_USER_VALIDATECODE = "user:login:validatecode:";
 
 }

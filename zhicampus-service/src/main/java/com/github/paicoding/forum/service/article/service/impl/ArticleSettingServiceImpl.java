@@ -1,5 +1,6 @@
 package com.github.paicoding.forum.service.article.service.impl;
 
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.paicoding.forum.api.model.enums.ArticleEventEnum;
 import com.github.paicoding.forum.api.model.enums.OperateArticleEnum;
@@ -11,7 +12,9 @@ import com.github.paicoding.forum.api.model.vo.PageVo;
 import com.github.paicoding.forum.api.model.vo.article.ArticlePostReq;
 import com.github.paicoding.forum.api.model.vo.article.SearchArticleReq;
 import com.github.paicoding.forum.api.model.vo.article.dto.ArticleAdminDTO;
+import com.github.paicoding.forum.api.model.vo.article.dto.ArticleDTO;
 import com.github.paicoding.forum.api.model.vo.constants.StatusEnum;
+import com.github.paicoding.forum.core.cache.RedisClient;
 import com.github.paicoding.forum.core.util.SpringUtil;
 import com.github.paicoding.forum.service.article.conveter.ArticleStructMapper;
 import com.github.paicoding.forum.service.article.repository.dao.ArticleDao;
@@ -20,8 +23,10 @@ import com.github.paicoding.forum.service.article.repository.entity.ArticleDO;
 import com.github.paicoding.forum.service.article.repository.entity.ColumnArticleDO;
 import com.github.paicoding.forum.service.article.repository.params.SearchArticleParams;
 import com.github.paicoding.forum.service.article.service.ArticleSettingService;
+import com.github.paicoding.forum.service.constant.RedisConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +49,9 @@ public class ArticleSettingServiceImpl implements ArticleSettingService {
 
     @Autowired
     private ColumnArticleDao columnArticleDao;
+
+    @Value("${spring.redis.isOpen:false}")
+    private Boolean openRedis;
 
     @Override
     @CacheEvict(key = "'sideBar_' + #req.articleId", cacheManager = "caffeineCacheManager", cacheNames = "article")
@@ -78,6 +86,12 @@ public class ArticleSettingServiceImpl implements ArticleSettingService {
         }
         articleDao.updateById(article);
 
+        // 删除redis中的缓存
+        if (openRedis) {
+            String redisCacheKey = RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_CACHE + req.getArticleId();
+            RedisClient.del(redisCacheKey);
+        }
+
         if (operateEvent != null) {
             // 发布文章待审核、上线、下线事件
             SpringUtil.publishEvent(new ArticleMsgEvent<>(this, operateEvent, article));
@@ -110,7 +124,12 @@ public class ArticleSettingServiceImpl implements ArticleSettingService {
             }
 
             dto.setDeleted(YesOrNoEnum.YES.getCode());
+
             articleDao.updateById(dto);
+            if (openRedis) {
+                String redisCacheKey = RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_CACHE + articleId;
+                RedisClient.del(redisCacheKey);
+            }
 
             // 发布文章删除事件
             SpringUtil.publishEvent(new ArticleMsgEvent<>(this, ArticleEventEnum.DELETE, dto));
@@ -127,6 +146,10 @@ public class ArticleSettingServiceImpl implements ArticleSettingService {
         }
         setArticleStat(articleDO, operate);
         articleDao.updateById(articleDO);
+        if (openRedis) {
+            String redisCacheKey = RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_CACHE + articleId;
+            RedisClient.del(redisCacheKey);
+        }
     }
 
     private void setArticleStat(ArticleDO articleDO, OperateArticleEnum operate) {

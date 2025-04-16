@@ -1,11 +1,13 @@
 package com.github.paicoding.forum.service.user.service.user;
 
+import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.StrUtil;
 import com.github.paicoding.forum.api.model.context.ReqInfoContext;
 import com.github.paicoding.forum.api.model.exception.ExceptionUtil;
 import com.github.paicoding.forum.api.model.vo.constants.StatusEnum;
 import com.github.paicoding.forum.api.model.vo.user.UserPwdLoginReq;
 import com.github.paicoding.forum.api.model.vo.user.UserSaveReq;
+import com.github.paicoding.forum.core.cache.RedisClient;
 import com.github.paicoding.forum.service.user.repository.dao.UserAiDao;
 import com.github.paicoding.forum.service.user.repository.dao.UserDao;
 import com.github.paicoding.forum.service.user.repository.entity.UserDO;
@@ -62,6 +64,8 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private static final String USER_LOGIN_ATTEMPTS = "user:login:attempts:";
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Long autoRegisterWxUserInfo(String uuid) {
@@ -111,6 +115,14 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public String loginByUserPwd(String username, String password, String captcha, String codeKey) {
+        // 检查登录风险，在60秒内输错10次密码会被限制
+        boolean isLoginAllowed = loginRateLimit(username, 5, 60);
+
+        if (!isLoginAllowed) {
+            // 账号密码错误太多次被限流
+            throw ExceptionUtil.of(StatusEnum.LOGIN_TOO_MANY) ;
+        }
+
         // 从Redis中获取验证码
         String redisCode = redisTemplate.opsForValue().get("user:login:validatecode:" + codeKey);
         if(StrUtil.isEmpty(redisCode) || !StrUtil.equalsIgnoreCase(redisCode , captcha)) {
@@ -126,8 +138,9 @@ public class LoginServiceImpl implements LoginService {
         }
 
         // passwordEncoder.matches(password, user.getPassword());
-
+        String zSetMember = System.currentTimeMillis() + ":" + UUID.randomUUID().toString().substring(0, 8);
         if (!userPwdEncoder.match(password, user.getPassword())) {
+            RedisClient.zAdd(USER_LOGIN_ATTEMPTS + username, zSetMember, System.currentTimeMillis());
             throw ExceptionUtil.of(StatusEnum.USER_PWD_ERROR);
         }
 
@@ -135,9 +148,19 @@ public class LoginServiceImpl implements LoginService {
         // 1. 为了兼容历史数据，对于首次登录成功的用户，初始化ai信息
         userAiService.initOrUpdateAiInfo(new UserPwdLoginReq().setUserId(userId).setUsername(username).setPassword(password));
 
-        // 登录成功，返回对应的session
+        // 登录成功，删除登录限流信息，返回对应的session
+        RedisClient.zRemoveKey(USER_LOGIN_ATTEMPTS + username);
         ReqInfoContext.getReqInfo().setUserId(userId);
         return userSessionHelper.genSession(userId);
+    }
+
+    private boolean loginRateLimit(String username, int limitCount, int windowInSeconds) {
+        long now = System.currentTimeMillis();
+        long windowSize = (long)windowInSeconds * 1000;
+        String key = USER_LOGIN_ATTEMPTS + username;
+        Long attemptCount = RedisClient.zCountByScore(key, now - windowSize, now);
+        // 判断是否超过限制
+        return attemptCount < limitCount;
     }
 
     /**

@@ -62,6 +62,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static com.github.paicoding.forum.service.constant.RedisConstant.ARTICLE_EXPIRE_TIME;
+
 /**
  * 文章查询相关服务类
  *
@@ -135,7 +137,7 @@ public class ArticleReadServiceImpl implements ArticleReadService {
 
             }
             if (article != null) {
-                RedisClient.setStr(redisCacheKey, JSONUtil.toJsonStr(article));
+                RedisClient.setStrWithExpire(redisCacheKey, JSONUtil.toJsonStr(article), ARTICLE_EXPIRE_TIME);
             }
 
         } else {

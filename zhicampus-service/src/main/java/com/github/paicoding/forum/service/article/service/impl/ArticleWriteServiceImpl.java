@@ -7,6 +7,7 @@ import com.github.paicoding.forum.api.model.exception.ExceptionUtil;
 import com.github.paicoding.forum.api.model.vo.article.ArticlePostReq;
 import com.github.paicoding.forum.api.model.vo.constants.StatusEnum;
 import com.github.paicoding.forum.api.model.vo.user.dto.BaseUserInfoDTO;
+import com.github.paicoding.forum.core.cache.RedisClient;
 import com.github.paicoding.forum.core.permission.UserRole;
 import com.github.paicoding.forum.core.util.NumUtil;
 import com.github.paicoding.forum.core.util.SpringUtil;
@@ -17,11 +18,13 @@ import com.github.paicoding.forum.service.article.repository.dao.ArticleTagDao;
 import com.github.paicoding.forum.service.article.repository.entity.ArticleDO;
 import com.github.paicoding.forum.service.article.service.ArticleWriteService;
 import com.github.paicoding.forum.service.article.service.ColumnSettingService;
+import com.github.paicoding.forum.service.constant.RedisConstant;
 import com.github.paicoding.forum.service.image.service.ImageService;
 import com.github.paicoding.forum.service.user.service.AuthorWhiteListService;
 import com.github.paicoding.forum.service.user.service.UserFootService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -61,6 +64,9 @@ public class ArticleWriteServiceImpl implements ArticleWriteService {
     @Autowired
     private AuthorWhiteListService articleWhiteListService;
 
+    @Value("${spring.redis.isOpen:false}")
+    private Boolean openRedis;
+
     public ArticleWriteServiceImpl(ArticleDao articleDao, ArticleTagDao articleTagDao) {
         this.articleDao = articleDao;
         this.articleTagDao = articleTagDao;
@@ -86,6 +92,11 @@ public class ArticleWriteServiceImpl implements ArticleWriteService {
                 } else {
                     articleId = updateArticle(article, content, req.getTagIds());
                     log.info("文章更新成功！ title={}", article.getTitle());
+                    // 删除文章缓存
+                    if (openRedis) {
+                        String redisCacheKey = RedisConstant.REDIS_PRE_ARTICLE + RedisConstant.REDIS_CACHE + articleId;
+                        RedisClient.del(redisCacheKey);
+                    }
                 }
                 if (req.getColumnId() != null) {
                     // 更新文章对应的专栏信息

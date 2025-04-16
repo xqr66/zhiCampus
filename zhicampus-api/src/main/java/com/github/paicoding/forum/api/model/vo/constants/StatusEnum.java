@@ -67,8 +67,13 @@ public enum StatusEnum {
 
     // 用户相关异常
     LOGIN_FAILED_MIXED(400_403_001, "登录失败:%s"),
+
     //验证码错误
     VALIDATE_CODE_ERROR(400_403_002, "验证码错误"),
+
+    //一分钟内登录错误太多
+    LOGIN_TOO_MANY(400_403_003, "密码错误次数过多，请1分钟后再试"),
+
     USER_NOT_EXISTS(400_404_001, "用户不存在:%s"),
     USER_EXISTS(400_404_002, "用户已存在:%s"),
     // 用户登录名重复
