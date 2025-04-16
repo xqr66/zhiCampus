@@ -46,6 +46,7 @@ public class SensitiveObjectMeta {
 
         List<SensitiveFieldMeta> sensitiveFieldMetaList = newArrayList();
         sensitiveObjectMeta.setSensitiveFieldMetaList(sensitiveFieldMetaList);
+        // 利用反射判断该class是否有字段需要脱敏，并将需要脱敏字段放到list中
         boolean sensitiveField = parseAllSensitiveFields(clazz, sensitiveFieldMetaList);
         sensitiveObjectMeta.setEnabledSensitiveReplace(sensitiveField);
         return Optional.of(sensitiveObjectMeta);

@@ -37,11 +37,7 @@
   border-radius: 100px;
   text-align: center;
 }
-.notice-content {
-  width: 1000px;
-  margin: 0 auto;
-  min-height: calc(100% - 133px);
-}
+
 .notification {
   margin-bottom: 12px;
   display: flex;

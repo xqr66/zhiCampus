@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 评论表
+ * 全局配置表
  *
  * @author louzai
  * @date 2022-07-18

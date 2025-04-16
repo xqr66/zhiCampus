@@ -109,7 +109,6 @@
   }
   
   .hot-article-bg,
-  .notice-bg,
   .column-bg,
   .pdf-bg {
     height: 74px;
@@ -148,7 +147,6 @@
   }
   
   .hot-article-content,
-  .notice-content,
   .column-content {
     padding: 20px;
     margin-top: -20px;

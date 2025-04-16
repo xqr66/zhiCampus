@@ -34,6 +34,8 @@ import static com.google.common.collect.Lists.newArrayList;
  * @author YiHui
  * @date 2023/8/9
  */
+
+// 对mybatis的结果集进行拦截
 @Intercepts({
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {java.sql.Statement.class})
 })
@@ -87,14 +89,17 @@ public class SensitiveReadInterceptor implements Interceptor {
 
             final MetaObject objMetaObject = mappedStatement.getConfiguration().newMetaObject(obj);
             sensitiveObjectMeta.getSensitiveFieldMetaList().forEach(i -> {
+                // 如果没有配置别名，默认按照字段名来
                 Object value = objMetaObject.getValue(StringUtils.isBlank(i.getBindField()) ? i.getName() : i.getBindField());
                 if (value == null) {
                     return;
                 } else if (value instanceof String) {
+                    // String类型
                     String strValue = (String) value;
                     String processVal = sensitiveService.replace(strValue);
                     objMetaObject.setValue(i.getName(), processVal);
                 } else if (value instanceof Collection) {
+                    // 集合类型，需要进行遍历
                     Collection listValue = (Collection) value;
                     if (CollectionUtils.isNotEmpty(listValue)) {
                         Optional firstValOpt = listValue.stream().filter(Objects::nonNull).findFirst();
