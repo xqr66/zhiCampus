@@ -2,6 +2,7 @@ package com.github.paicoding.forum.service.article.repository.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.github.paicoding.forum.api.model.entity.BaseDO;
+import com.github.paicoding.forum.core.senstive.ano.SensitiveField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,6 +34,7 @@ public class ArticleDetailDO extends BaseDO {
     /**
      * 文章内容
      */
+    @SensitiveField(bind = "content")
     private String content;
 
     private Integer deleted;
