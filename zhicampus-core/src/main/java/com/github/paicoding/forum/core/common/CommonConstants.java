@@ -33,6 +33,10 @@ public class CommonConstants {
     public static final String CATEGORY_CODE_LIFE       = "代码人生";
     public static final String CATEGORY_TOOL            = "开发工具";
     public static final String CATEGORY_READ            = "阅读";
+    public static final String CAMPUS_HELP              = "校园求助";
+
+    public static final String CAMPUS_FOOD              = "校内外美食";
+    public static final String LOOK_FOR_SOMEONE         = "捞人";
 
     /**
      * 首页图片
@@ -41,10 +45,10 @@ public class CommonConstants {
         {
             put(CATEGORY_ALL, new ArrayList<String>() {
                 {
-                    add("https://cdn.tobebetterjavaer.com/paicoding/8b5865e9461948aed4aacffc62adbae7.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/71505c62fb6375cbbd62af63964b2ad4.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/147915cdddea55ce37c2c5ecfc7c089e.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/dee73c8810cb699ae1ec774a54612080.jpg");
+                    add("/img/all/川大春.jpg");
+                    add("/img/all/川大夏.jpg");
+                    add("/img/all/川大秋.jpg");
+                    add("/img/all/川大冬.jpg");
                 }
             });
             put(CATEGORY_BACK_EMD, new ArrayList<String>() {
@@ -71,7 +75,7 @@ public class CommonConstants {
                     add("https://cdn.tobebetterjavaer.com/paicoding/b964b76b111cf36602d9b2dc30bee9ee.jpg");
                 }
             });
-            put(CATEGORY_IOS, new ArrayList<String>() {
+            put(LOOK_FOR_SOMEONE, new ArrayList<String>() {
                 {
                     add("https://cdn.tobebetterjavaer.com/paicoding/7edcb3dd19d4d517be34a30bc082338d.jpg");
                     add("https://cdn.tobebetterjavaer.com/paicoding/ee2a3fec62d85df3b1c27908d53698c5.jpg");
@@ -111,7 +115,7 @@ public class CommonConstants {
                     add("https://cdn.tobebetterjavaer.com/paicoding/870997d1442e4d67186bf0dbc52e2096.jpg");
                 }
             });
-            put(CATEGORY_READ, new ArrayList<String>() {
+            put(CAMPUS_HELP, new ArrayList<String>() {
                 {
                     add("https://cdn.tobebetterjavaer.com/paicoding/dd3f3e90b666cfe65f4ca5e56ebfc9f8.jpg");
                     add("https://cdn.tobebetterjavaer.com/paicoding/7c591a44a9f83eec9606d16f89040632.jpg");

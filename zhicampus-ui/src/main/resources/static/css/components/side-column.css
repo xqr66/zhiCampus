@@ -44,8 +44,20 @@
     overflow: hidden;
     -webkit-line-clamp: 2;
   }
-  
-  .home-right-item-article-item i {
+.hot-rank {
+  color: #ff4d4f;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.normal-rank {
+  color: #999999;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+
+.home-right-item-article-item i {
     flex-shrink: 0;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.06);
@@ -113,6 +125,9 @@
   .pdf-bg {
     height: 74px;
     margin-top: -14px;
+  }
+  .hot-article-bg {
+    opacity: 0.5; /* 取值范围 0.0（全透明） ~ 1.0（不透明） */
   }
   
   .hot-article

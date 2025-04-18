@@ -308,10 +308,15 @@
   background-image: url(../../img/lucky.png);
   background-position: top;
   background-repeat: no-repeat;
-  background-size: auto 288px;
+  /* 关键修改点 */
+  background-size: 100% auto; /* 横向铺满，高度自适应 */
   position: relative;
   height: 268px;
   padding-top: 42px;
+
+  /* 新增保障措施（可选） */
+  width: 100%; /* 确保容器本身横向撑满父级 */
+  overflow: hidden; /* 隐藏可能溢出的背景部分 */
 }
 
 .user-bg-mask {
