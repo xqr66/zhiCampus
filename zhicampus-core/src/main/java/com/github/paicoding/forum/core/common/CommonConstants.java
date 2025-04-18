@@ -38,6 +38,8 @@ public class CommonConstants {
     public static final String CAMPUS_FOOD              = "校内外美食";
     public static final String LOOK_FOR_SOMEONE         = "捞人";
 
+    public static final String CAMPUS_TRADE             = "闲置物品交易";
+
     /**
      * 首页图片
      */
@@ -99,28 +101,28 @@ public class CommonConstants {
                     add("https://cdn.tobebetterjavaer.com/paicoding/c6bfe6bea326a64a267520ba7cada539.jpg");
                 }
             });
-            put(CATEGORY_CODE_LIFE, new ArrayList<String>() {
+            put(CAMPUS_FOOD, new ArrayList<String>() {
                 {
-                    add("https://cdn.tobebetterjavaer.com/paicoding/077b7d8891e69701e8d3d4302392dab5.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/be98a2779d2dde96c40092bbae958864.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/d368d4bed7daf51116f4defbb4afcb6d.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/c6bfe6bea326a64a267520ba7cada539.jpg");
+                    add("/img/eat/校内美食1.jpg");
+                    add("/img/eat/校内美食2.jpg");
+                    add("/img/eat/校内美食3.jpg");
+                    add("/img/eat/校内美食4.jpg");
                 }
             });
-            put(CATEGORY_TOOL, new ArrayList<String>() {
+            put(CAMPUS_TRADE, new ArrayList<String>() {
                 {
-                    add("https://cdn.tobebetterjavaer.com/paicoding/53de05a01c7246feadffb6ba24120416.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/e3e1f7a729d5cfbde0e5373c2d61377a.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/326585eab30c33cdfa1cc058b269bf5a.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/870997d1442e4d67186bf0dbc52e2096.jpg");
+                    add("/img/trade/闲置交易1.jpeg");
+                    add("/img/trade/闲置交易2.jpeg");
+                    add("/img/trade/闲置交易3.jpeg");
+                    add("/img/trade/闲置交易4.jpeg");
                 }
             });
             put(CAMPUS_HELP, new ArrayList<String>() {
                 {
-                    add("https://cdn.tobebetterjavaer.com/paicoding/dd3f3e90b666cfe65f4ca5e56ebfc9f8.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/7c591a44a9f83eec9606d16f89040632.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/42dbb88fed8caa2d95860dbdb359c18f.jpg");
-                    add("https://cdn.tobebetterjavaer.com/paicoding/b99cab7999d5bdf3f5926dc0a98d02da.jpg");
+                    add("/img/campusSolution/校园求助1.jpeg");
+                    add("/img/campusSolution/校园求助2.jpeg");
+                    add("/img/campusSolution/校园求助3.jpeg");
+                    add("/img/campusSolution/校园求助4.jpeg");
                 }
             });
         }

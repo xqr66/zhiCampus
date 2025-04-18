@@ -34,7 +34,6 @@ public class ArticleDetailDO extends BaseDO {
     /**
      * 文章内容
      */
-    @SensitiveField(bind = "content")
     private String content;
 
     private Integer deleted;
