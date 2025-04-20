@@ -3,7 +3,7 @@ package com.github.paicoding.forum.core.config;
 import lombok.Data;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/1/12
  */
 @Data

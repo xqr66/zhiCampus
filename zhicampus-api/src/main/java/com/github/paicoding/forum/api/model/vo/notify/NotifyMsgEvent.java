@@ -8,7 +8,7 @@ import lombok.ToString;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/9/3
  */
 @Getter

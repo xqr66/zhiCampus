@@ -10,7 +10,7 @@ import java.security.Principal;
 /**
  * 请求上下文，携带用户身份相关信息
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/7/6
  */
 public class ReqInfoContext {

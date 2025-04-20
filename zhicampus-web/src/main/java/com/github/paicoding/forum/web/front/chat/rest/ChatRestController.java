@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * STOMP协议的ChatGpt聊天通讯实现方式
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/6/5
  */
 @Slf4j

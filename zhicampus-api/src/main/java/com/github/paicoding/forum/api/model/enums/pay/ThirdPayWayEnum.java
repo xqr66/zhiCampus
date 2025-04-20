@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * 三方平台支付方式
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/3
  */
 public enum ThirdPayWayEnum {

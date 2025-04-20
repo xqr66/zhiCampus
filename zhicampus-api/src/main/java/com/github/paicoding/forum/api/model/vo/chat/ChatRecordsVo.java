@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * 聊天记录
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/6/9
  */
 @Data

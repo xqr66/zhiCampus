@@ -5,7 +5,7 @@ import com.github.paicoding.forum.api.model.vo.recommend.SideBarDTO;
 import java.util.List;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/9/6
  */
 public interface SidebarService {

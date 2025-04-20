@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * open ai 客户端
  *
- * @author plexpt
+ * @author xqr
  */
 
 @Slf4j

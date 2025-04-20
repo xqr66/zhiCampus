@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/1/12
  */
 public interface ImageUploader {

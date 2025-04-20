@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2024/12/04
  */
 public class PriceUtil {

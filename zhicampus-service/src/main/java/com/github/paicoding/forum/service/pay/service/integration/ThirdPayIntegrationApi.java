@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * 对接三方支付的API定义
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/6
  */
 public interface ThirdPayIntegrationApi {

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/6/9
  */
 @Configuration

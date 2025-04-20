@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/9/4
  */
 @Configuration

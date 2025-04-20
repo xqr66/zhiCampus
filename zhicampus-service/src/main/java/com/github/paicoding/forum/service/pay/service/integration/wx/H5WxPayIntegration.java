@@ -16,7 +16,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2024/12/4
  */
 @Slf4j

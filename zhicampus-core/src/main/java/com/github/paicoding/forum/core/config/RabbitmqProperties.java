@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * RabbitMQ配置文件
  *
- * @author LouZai
+ * @author xqr
  * @since 2023/5/10
  */
 @Setter

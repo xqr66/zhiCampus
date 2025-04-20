@@ -6,7 +6,7 @@ import com.github.paicoding.forum.core.util.SpringUtil;
 import org.springframework.stereotype.Service;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2024/11/27
  */
 @Service

@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 微信搜索「沉默王二」，回复 Java
  *
- * @author 沉默王二
+ * @author xqr
  * @date 6/7/23
  */
 @Getter

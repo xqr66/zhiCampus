@@ -8,7 +8,7 @@ import com.github.paicoding.forum.api.model.vo.article.dto.CategoryDTO;
 /**
  * 分类后台接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-09-17
  */
 public interface CategorySettingService {

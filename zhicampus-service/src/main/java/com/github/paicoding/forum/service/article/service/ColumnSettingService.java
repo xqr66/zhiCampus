@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 专栏后台接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-09-19
  */
 public interface ColumnSettingService {

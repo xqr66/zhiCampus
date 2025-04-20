@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 评论mapper接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 public interface CommentMapper extends BaseMapper<CommentDO> {

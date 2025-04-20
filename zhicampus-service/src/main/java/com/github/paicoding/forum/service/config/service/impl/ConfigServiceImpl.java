@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Banner前台接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-24
  */
 @Service

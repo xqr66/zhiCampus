@@ -52,7 +52,7 @@ import java.util.Objects;
  *  - 返回视图 view
  *  - 返回json数据
  *
- * @author yihui
+ * @author xqr
  */
 @Controller
 @RequestMapping(path = "article")

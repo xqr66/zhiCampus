@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * 文章支付记录
  * <p>
  *
- * @author YiHui
+ * @author xqr
  * @date 2024-10-29
  */
 @Repository

@@ -2,7 +2,7 @@
  * Code block dialog plugin for Editor.md
  *
  * @file        code-block-dialog.js
- * @author      pandao
+ * @author xqr
  * @version     1.2.0
  * @updateTime  2015-03-07
  * {@link       https://github.com/pandao/editor.md}

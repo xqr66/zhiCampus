@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * 技术派的支付服务接口
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/9
  */
 public interface PayService {

@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  *
  * DO 对应数据库实体类
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 @Data

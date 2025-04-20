@@ -1,7 +1,7 @@
 package com.github.paicoding.forum.test.proxy;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/2/28
  */
 public class DemoService {

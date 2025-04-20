@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 全局属性配置
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/3
  */
 public class BaseViewController {

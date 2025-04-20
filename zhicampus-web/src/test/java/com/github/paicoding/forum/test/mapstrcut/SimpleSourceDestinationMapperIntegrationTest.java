@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * 微信搜索「沉默王二」，回复 Java
  *
- * @author 沉默王二
+ * @author xqr
  * @date 9/21/23
  */
 @RunWith(SpringJUnit4ClassRunner.class)

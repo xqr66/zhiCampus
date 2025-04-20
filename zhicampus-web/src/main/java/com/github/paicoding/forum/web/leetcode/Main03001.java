@@ -16,7 +16,7 @@ import java.util.List;
  *  例如，如果 words = ["ab","cd","ef"]， 那么 "abcdef"， "abefcd"，"cdabef"， "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串。 "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
  * 返回所有串联子串在 s 中的开始索引。你可以以 任意顺序 返回答案。
  *
- * @author 沉默王二
+ * @author xqr
  * @date 2/27/24
  */
 public class Main03001 {

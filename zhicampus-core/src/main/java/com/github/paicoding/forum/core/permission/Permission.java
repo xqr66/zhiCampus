@@ -3,7 +3,7 @@ package com.github.paicoding.forum.core.permission;
 import java.lang.annotation.*;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/8/25
  */
 @Target({ElementType.METHOD, ElementType.TYPE})

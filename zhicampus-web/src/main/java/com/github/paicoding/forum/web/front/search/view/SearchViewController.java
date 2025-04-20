@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 推荐服务接口
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/10/28
  */
 @Controller

@@ -3,7 +3,7 @@ package com.github.paicoding.forum.api.model.enums;
 import lombok.Getter;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/9/3
  */
 @Getter

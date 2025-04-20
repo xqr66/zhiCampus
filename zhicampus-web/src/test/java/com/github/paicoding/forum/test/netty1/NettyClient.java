@@ -3,7 +3,7 @@ package com.github.paicoding.forum.test.netty1;
 /**
  * 微信搜索「沉默王二」，回复 Java
  *
- * @author 沉默王二
+ * @author xqr
  * @date 4/19/24
  */
 import io.netty.bootstrap.Bootstrap;

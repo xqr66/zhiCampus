@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 专栏文章
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/14
  */
 @Data

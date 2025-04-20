@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * 支付状态
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/10/29
  */
 @Getter

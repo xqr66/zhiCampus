@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * 敏感词服务类
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/8/9
  */
 @Slf4j
@@ -38,7 +38,7 @@ public class SensitiveService {
     private DynamicConfigContainer dynamicConfigContainer;
 
     /*
-     * @author: xqr
+ * @author xqr
      * @description: 在原有库的基础上，能够自定义敏感词配置、加入到词库中
      * @date: 2025/4/15 21:12
      * @param

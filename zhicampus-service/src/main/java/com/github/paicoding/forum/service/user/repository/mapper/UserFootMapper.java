@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 用户足迹mapper接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 public interface UserFootMapper extends BaseMapper<UserFootDO> {

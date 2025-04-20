@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 /**
  * 向三方支付平台下单的请求业务参数
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/3
  */
 @Data

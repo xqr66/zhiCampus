@@ -30,7 +30,7 @@ import java.util.function.Function;
 /**
  * 微信公众号登录相关
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/2
  */
 @Slf4j

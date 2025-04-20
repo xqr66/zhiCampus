@@ -6,7 +6,7 @@ import com.github.paicoding.forum.service.config.repository.entity.ConfigDO;
 /**
  * 配置mapper接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 public interface ConfigMapper extends BaseMapper<ConfigDO> {

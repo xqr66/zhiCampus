@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/9/14
  */
 public interface ColumnArticleMapper extends BaseMapper<ColumnArticleDO> {

@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * 随机工具类
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/9/7
  */
 public class RandUtil {

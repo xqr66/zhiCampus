@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 邮件发送验证
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/3/19
  */
 @Data

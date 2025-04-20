@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * 用户关系Service接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-20
  */
 public interface UserRelationService {

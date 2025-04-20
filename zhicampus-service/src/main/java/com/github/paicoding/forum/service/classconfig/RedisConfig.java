@@ -14,7 +14,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * RedisConfig
- * @author ygl
+ * @author xqr
  * @description
  */
 @Configuration
@@ -48,7 +48,7 @@ public class RedisConfig {
     /**
      * redis的过期监听配置
      *
-     * @author: ygl
+ * @author xqr
      * @date: 2023/4/29 00:40
      */
     @Bean

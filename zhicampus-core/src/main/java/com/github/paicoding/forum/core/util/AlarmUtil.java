@@ -4,7 +4,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/3/19
  */
 public class AlarmUtil extends AppenderBase<ILoggingEvent> {

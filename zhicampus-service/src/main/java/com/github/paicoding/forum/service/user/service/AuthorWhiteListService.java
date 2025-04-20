@@ -5,7 +5,7 @@ import com.github.paicoding.forum.api.model.vo.user.dto.BaseUserInfoDTO;
 import java.util.List;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/4/9
  */
 public interface AuthorWhiteListService {

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 文章支付信息
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/10/29
  */
 @Data

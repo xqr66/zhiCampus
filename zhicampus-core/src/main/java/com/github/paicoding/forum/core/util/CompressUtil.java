@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 /**
  * 压缩工具类
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/10/17
  */
 public class CompressUtil {

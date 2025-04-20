@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * 站点相关地图
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/8/22
  */
 public class SitemapConstants {

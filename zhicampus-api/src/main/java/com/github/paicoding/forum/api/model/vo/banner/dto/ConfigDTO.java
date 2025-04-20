@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * Banner
  *
- * @author louzai
+ * @author xqr
  * @date 2022-09-17
  */
 @Data

@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 微信搜索「沉默王二」，回复 Java
  *
- * @author 沉默王二
+ * @author xqr
  * @date 12/18/23
  */
 public class Main00502 {

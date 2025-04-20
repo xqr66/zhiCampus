@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 消息通知服务类
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/3
  */
 public interface NotifyService {

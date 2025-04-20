@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 图片服务，要求登录之后才允许操作
  *
- * @author LouZai
+ * @author xqr
  * @date 2022/9/7
  */
 

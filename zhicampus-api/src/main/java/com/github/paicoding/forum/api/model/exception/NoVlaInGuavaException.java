@@ -3,7 +3,7 @@ package com.github.paicoding.forum.api.model.exception;
 /**
  * 未命中异常
  *
- * @author yihui
+ * @author xqr
  * @date 2022/8/15
  */
 public class NoVlaInGuavaException extends RuntimeException {

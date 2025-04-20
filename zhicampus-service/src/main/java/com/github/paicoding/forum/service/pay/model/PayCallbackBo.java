@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 /**
  * 支付回调通知业务对象
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/6
  */
 @Data

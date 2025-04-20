@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSessionListener;
 /**
  * 通过监听session来实现实时人数统计
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/3/26
  */
 @WebListener

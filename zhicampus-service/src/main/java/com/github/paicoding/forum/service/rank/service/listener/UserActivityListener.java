@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 /**
  * 用户活跃相关的消息监听器
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/8/19
  */
 @Component

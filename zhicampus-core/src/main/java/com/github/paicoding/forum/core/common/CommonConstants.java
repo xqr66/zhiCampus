@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 通用常量
  *
- * @author Louzai
+ * @author xqr
  * @date 2022/11/1
  */
 public class CommonConstants {

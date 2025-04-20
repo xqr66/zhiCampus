@@ -7,7 +7,7 @@ import com.github.paicoding.forum.service.user.service.help.UserRandomGenHelper;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/6/27
  */
 public class UserAiConverter {

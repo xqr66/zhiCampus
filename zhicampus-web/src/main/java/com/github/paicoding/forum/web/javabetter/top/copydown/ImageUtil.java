@@ -3,7 +3,7 @@ package com.github.paicoding.forum.web.javabetter.top.copydown;
 /**
  * 微信搜索「沉默王二」，回复 Java
  *
- * @author 沉默王二
+ * @author xqr
  * @date 5/31/22
  */
 public class ImageUtil {

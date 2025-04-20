@@ -18,7 +18,7 @@ import java.util.Objects;
 /**
  * 个人收款码，基于微信的支付方式
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/6
  */
 @Slf4j

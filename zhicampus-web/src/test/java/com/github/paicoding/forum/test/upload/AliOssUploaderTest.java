@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/2/10
  */
 public class AliOssUploaderTest {

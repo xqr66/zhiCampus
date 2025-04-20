@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 用户收款码
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/10/30
  */
 @Data

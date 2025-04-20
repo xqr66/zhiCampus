@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @ClassName ValidateCodeVo
  * @Description
- * @Author xqr
+ * @author xqr
  * @Date 2025/4/7 15:56
  */
 

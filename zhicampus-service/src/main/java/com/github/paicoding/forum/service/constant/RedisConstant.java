@@ -4,7 +4,7 @@ package com.github.paicoding.forum.service.constant;
  * Redis字段常量
  *
  * @ClassName: RedisConstant
- * @Author: ygl
+ * @author xqr
  * @Date: 2023/6/2 06:39
  * @Version: 1.0
  */

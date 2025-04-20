@@ -67,7 +67,7 @@ import static com.github.paicoding.forum.service.constant.RedisConstant.ARTICLE_
 /**
  * 文章查询相关服务类
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-20
  */
 @Slf4j

@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * 文章阅读类型枚举
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/10/29
  */
 @Getter

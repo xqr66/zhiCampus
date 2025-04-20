@@ -3,7 +3,7 @@ package com.github.paicoding.forum.service.user.service;
 import com.github.paicoding.forum.api.model.vo.user.UserPwdLoginReq;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/8/15
  */
 public interface LoginService {

@@ -9,7 +9,7 @@ import com.github.paicoding.forum.service.article.repository.entity.ArticlePayRe
 import java.util.List;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2024/10/29
  */
 public interface ArticlePayService {

@@ -1,7 +1,7 @@
 package com.github.paicoding.forum.core.util;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/8/31
  */
 public class NumUtil {

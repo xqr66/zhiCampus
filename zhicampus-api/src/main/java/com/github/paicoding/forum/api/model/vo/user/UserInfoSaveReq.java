@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 用户信息入参
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-24
  */
 @Data

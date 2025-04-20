@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 字典Service
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-20
  */
 public interface DictCommonService {

@@ -7,7 +7,7 @@ import com.github.paicoding.forum.api.model.vo.config.dto.GlobalConfigDTO;
 
 /**
  *
- * @author 沉默王二
+ * @author xqr
  * @date 6/30/23
  */
 public interface GlobalConfigService {

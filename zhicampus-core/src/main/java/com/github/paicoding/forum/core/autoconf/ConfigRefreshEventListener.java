@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * 配置刷新事件监听
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/09/14
  */
 @Service

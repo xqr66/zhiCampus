@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 基于验证码、用户名密码的登录方式
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/8/15
  */
 @Service

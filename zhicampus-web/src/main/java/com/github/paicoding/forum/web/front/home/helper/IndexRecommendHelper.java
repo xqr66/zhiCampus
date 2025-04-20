@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 /**
  * 首页推荐相关
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/6
  */
 @Component

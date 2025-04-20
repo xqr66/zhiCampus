@@ -15,7 +15,7 @@ import java.io.IOException;
  * redisson 配置类
  *
  * @ClassName: RedisLuaUtil
- * @Author: ygl
+ * @author xqr
  * @Date: 2023/6/2 22:56
  * @Version: 1.0
  */

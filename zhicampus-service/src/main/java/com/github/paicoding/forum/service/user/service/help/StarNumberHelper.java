@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 /**
  * 密码加密器，后续接入SpringSecurity之后，可以使用 PasswordEncoder 进行替换
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/12/5
  */
 @Component

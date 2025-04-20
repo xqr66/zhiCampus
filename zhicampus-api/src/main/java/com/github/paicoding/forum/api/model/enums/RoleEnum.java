@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.Objects;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/1/31
  */
 public enum RoleEnum {

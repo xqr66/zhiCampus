@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 文章支付记录
  *
- * @author YiHui
+ * @author xqr
  * @date 2024-10-29
  */
 @Data

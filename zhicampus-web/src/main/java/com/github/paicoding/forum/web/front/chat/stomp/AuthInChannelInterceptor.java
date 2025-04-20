@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * 权限拦截器，消息发送前进行拦截
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/6/8
  */
 @Slf4j

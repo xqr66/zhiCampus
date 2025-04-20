@@ -6,7 +6,7 @@ import com.github.paicoding.forum.service.article.repository.entity.TagDO;
 /**
  * 标签mapper接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 public interface TagMapper extends BaseMapper<TagDO> {

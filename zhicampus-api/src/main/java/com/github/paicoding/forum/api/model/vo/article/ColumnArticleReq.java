@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 保存Column文章请求参数
  *
- * @author LouZai
+ * @author xqr
  * @date 2022/9/26
  */
 @Data

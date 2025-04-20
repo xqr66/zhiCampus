@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @author Louzai
+ * @author xqr
  * @date 2023/5/10
  */
 public class RabbitmqConnection {

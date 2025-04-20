@@ -10,7 +10,7 @@ import java.util.Date;
  * <p>
  * DTO 定义返回给 admin 后端的实体类 (VO)
  *
- * @author 沉默王二
+ * @author xqr
  * @date 2023年05月23日
  */
 @Data

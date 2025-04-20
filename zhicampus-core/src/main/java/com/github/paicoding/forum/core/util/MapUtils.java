@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/7/6
  */
 public class MapUtils {

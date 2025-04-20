@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 用户注册服务
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/6/26
  */
 @Service

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/8/15
  */
 public class CodeGenerateUtil {

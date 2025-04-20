@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * 文章转换
  * <p>
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-31
  */
 public class ArticleConverter {

@@ -37,17 +37,17 @@
                         />
                     </div>
                     <div class="input-group">
-                        <span class="form-label">公司</span>
+                        <span class="form-label">学院</span>
                         <input
                                 id="company"
                                 type="text"
                                 class="form-control"
                                 th:value="${vo.userHome != null ? vo.userHome.company: ''}"
-                                placeholder="请输入公司"
+                                placeholder="请输入学院"
                         />
                     </div>
                     <div class="input-group">
-                        <span class="form-label">职位</span>
+                        <span class="form-label">职位/年级</span>
                         <input
                                 id="position"
                                 type="text"
@@ -124,9 +124,7 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <div th:replace="views/user/pay/pay :: user_pay(${vo.payQrCodes})"></div>
-            </div>
+
             <div class="modal-footer pr-4">
                 <button id="publish" type="button" class="btn btn-primary">
                     保存
@@ -181,21 +179,10 @@
                 profile: profile,
                 email: email
             }
-            let payCodes = {}
-            let hasPayInfo = false;
-            for(let key in qrMap) {
-                payCodes[key] = qrMap[key]['qrMsg']
-                hasPayInfo = true;
-            }
-            params['payCode'] = payCodes;
-            if (hasPayInfo && !email) {
-                toastr.error("请配置接收用户打赏信息的邮箱地址")
-                return;
-            }
+
         }
 
-        // 收款码信息
-        console.log(qrMap);
+
 
         post("/user/api/saveUserInfo", params, function (data) {
             console.log("返回结果:", data);

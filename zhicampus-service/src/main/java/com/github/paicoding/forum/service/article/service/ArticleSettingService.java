@@ -9,7 +9,7 @@ import com.github.paicoding.forum.api.model.vo.article.dto.ArticleAdminDTO;
 /**
  * 文章后台接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-09-19
  */
 public interface ArticleSettingService {

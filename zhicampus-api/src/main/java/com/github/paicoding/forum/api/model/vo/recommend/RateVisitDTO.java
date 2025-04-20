@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 资源的访问、评分信息
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/1/3
  */
 @Data

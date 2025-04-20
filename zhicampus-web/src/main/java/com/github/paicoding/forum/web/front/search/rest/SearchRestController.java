@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 推荐服务接口
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/10/28
  */
 @RequestMapping(path = "search/api")

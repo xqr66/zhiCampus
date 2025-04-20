@@ -3,7 +3,7 @@ package com.github.paicoding.forum.web.common.image.vo;
 import lombok.Data;
 
 /**
- * @author LouZai
+ * @author xqr
  * @date 2022/9/8
  */
 @Data

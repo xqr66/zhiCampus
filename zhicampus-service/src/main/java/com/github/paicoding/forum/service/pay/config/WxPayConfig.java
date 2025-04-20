@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 微信支付配置
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/3
  */
 @Data

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 用户登录mapper接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-18
  */
 public interface UserMapper extends BaseMapper<UserDO> {

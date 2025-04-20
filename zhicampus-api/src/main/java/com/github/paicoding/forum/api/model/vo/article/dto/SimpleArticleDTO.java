@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 /**
  * 文章推荐
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/6
  */
 @Data

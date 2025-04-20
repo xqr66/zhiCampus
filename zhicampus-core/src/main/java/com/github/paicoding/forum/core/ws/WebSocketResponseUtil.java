@@ -9,7 +9,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 /**
  * websocket消息响应封装工具类
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/11/27
  */
 public class WebSocketResponseUtil {

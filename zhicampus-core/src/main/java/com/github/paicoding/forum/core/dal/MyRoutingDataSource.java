@@ -4,7 +4,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.lang.Nullable;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/4/30
  */
 public class MyRoutingDataSource extends AbstractRoutingDataSource {

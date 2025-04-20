@@ -1,7 +1,7 @@
 package com.github.paicoding.forum.core.dal;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/4/30
  */
 public interface DS {

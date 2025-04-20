@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * <p>
  * 时间 + 数据中心(3位) + 机器id(7位) + 序列号(12位)
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/10/16
  */
 @Slf4j

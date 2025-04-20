@@ -5,7 +5,7 @@
  * @version     v1.5.0 
  * @description Open source online markdown editor.
  * @license     MIT License
- * @author      Pandao
+ * @author xqr
  * {@link       https://github.com/pandao/editor.md}
  * @updateTime  2015-06-09
  */

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 用户Service接口
  *
- * @author louzai
+ * @author xqr
  * @date 2022-07-20
  */
 public interface UserService {
@@ -59,7 +59,7 @@ public interface UserService {
 
     /**
      * 查询用户基本信息
-     * todo: 可以做缓存优化
+     *
      *
      * @param userId
      * @return

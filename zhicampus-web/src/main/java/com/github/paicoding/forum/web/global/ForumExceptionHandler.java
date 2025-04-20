@@ -28,7 +28,7 @@ import java.io.IOException;
  * 全局异常处理
  * 除了这种姿势之外，还可以使用 ControllerAdvice 注解方式
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/3
  */
 @Slf4j
@@ -72,7 +72,7 @@ public class ForumExceptionHandler implements HandlerExceptionResolver {
 
 
     /*
-     * @author: xqr
+ * @author xqr
      * @description: 构建返回状态
      * @date: 2025/4/13 19:03
      * @param ex

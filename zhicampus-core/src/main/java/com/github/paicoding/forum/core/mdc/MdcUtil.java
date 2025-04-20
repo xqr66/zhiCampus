@@ -3,7 +3,7 @@ package com.github.paicoding.forum.core.mdc;
 import org.slf4j.MDC;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/5/29
  */
 public class MdcUtil {

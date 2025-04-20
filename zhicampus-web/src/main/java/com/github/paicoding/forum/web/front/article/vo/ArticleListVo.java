@@ -5,7 +5,7 @@ import com.github.paicoding.forum.api.model.vo.article.dto.ArticleDTO;
 import lombok.Data;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2022/10/28
  */
 @Data

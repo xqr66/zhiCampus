@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * 用户名生成器
  *
- * @author YiHui
+ * @author xqr
  * @date 2022/9/27
  */
 public class UserRandomGenHelper {

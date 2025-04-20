@@ -3,7 +3,7 @@ package com.github.paicoding.forum.service.statistics.service;
 /**
  * 用户统计服务
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/3/26
  */
 public interface UserStatisticService {

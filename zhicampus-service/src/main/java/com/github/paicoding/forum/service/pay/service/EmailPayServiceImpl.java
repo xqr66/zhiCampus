@@ -32,7 +32,7 @@ import java.util.function.Function;
 /**
  * 个人收款码-基于邮件的支付流程
  *
- * @author YiHui
+ * @author xqr
  * @date 2024/12/9
  */
 @Slf4j

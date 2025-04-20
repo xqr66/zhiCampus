@@ -1,7 +1,7 @@
 package com.github.paicoding.forum.service.chatai.service;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/6/2
  */
 public interface ChatgptService {

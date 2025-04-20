@@ -6,7 +6,7 @@ import java.util.function.Function;
 /**
  * 敏感词缓存
  *
- * @author YiHui
+ * @author xqr
  * @date 2023/8/9
  */
 public class SensitiveMetaCache {

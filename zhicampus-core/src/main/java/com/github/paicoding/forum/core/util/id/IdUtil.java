@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import static com.github.paicoding.forum.core.util.CompressUtil.int2str;
 
 /**
- * @author YiHui
+ * @author xqr
  * @date 2023/8/30
  */
 public class IdUtil {
