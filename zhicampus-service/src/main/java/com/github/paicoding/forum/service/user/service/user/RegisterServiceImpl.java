@@ -43,7 +43,7 @@ public class RegisterServiceImpl implements RegisterService {
         // 1. 判断用户名是否准确
         UserDO user = userDao.getUserByUserName(loginReq.getUsername());
         if (user != null) {
-            throw ExceptionUtil.of(StatusEnum.USER_LOGIN_NAME_REPEAT, loginReq.getUsername());
+            throw ExceptionUtil.of(StatusEnum.USER_EXISTS, loginReq.getUsername());
         }
 
         // 2. 保存用户登录信息

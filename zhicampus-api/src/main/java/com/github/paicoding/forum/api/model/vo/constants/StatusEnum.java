@@ -84,8 +84,10 @@ public enum StatusEnum {
     USER_STAR_NOT_EXISTS(400_404_002, "星球编号不存在:%s"),
     // 星球编号重复
     USER_STAR_REPEAT(400_404_002, "星球编号重复:%s"),
-    USER_PWD_ERROR(400_500_002, "用户名or密码错误");
+    USER_PWD_ERROR(400_500_002, "用户名或密码错误"),
 
+    // 用户被封禁
+    USER_BLOCKED(400_404_004, "用户已被封禁，解封时间：%s");
     private int code;
 
     private String msg;

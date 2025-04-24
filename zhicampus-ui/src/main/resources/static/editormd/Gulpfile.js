@@ -27,7 +27,7 @@ var headerComment = ["/*",
 					" * @version     v<%= pkg.version %> ",
 					" * @description <%= pkg.description %>",
 					" * @license     MIT License",
- * @author xqr
+                    " * @author      <%= pkg.author %>",
 					" * {@link       <%= pkg.homepage %>}",
 					" * @updateTime  <%= pkg.today('Y-m-d') %>",
 					" */", 

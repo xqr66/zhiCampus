@@ -11,10 +11,7 @@ import com.github.paicoding.forum.core.cache.RedisClient;
 import com.github.paicoding.forum.service.user.repository.dao.UserAiDao;
 import com.github.paicoding.forum.service.user.repository.dao.UserDao;
 import com.github.paicoding.forum.service.user.repository.entity.UserDO;
-import com.github.paicoding.forum.service.user.service.LoginService;
-import com.github.paicoding.forum.service.user.service.RegisterService;
-import com.github.paicoding.forum.service.user.service.UserAiService;
-import com.github.paicoding.forum.service.user.service.UserService;
+import com.github.paicoding.forum.service.user.service.*;
 import com.github.paicoding.forum.service.user.service.help.StarNumberHelper;
 import com.github.paicoding.forum.service.user.service.help.UserPwdEncoder;
 import com.github.paicoding.forum.service.user.service.help.UserSessionHelper;
@@ -63,6 +60,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorBlockListService authorBlockListService;
 
     private static final String USER_LOGIN_ATTEMPTS = "user:login:attempts:";
 
@@ -150,6 +150,13 @@ public class LoginServiceImpl implements LoginService {
 
         // 登录成功，删除登录限流信息，返回对应的session
         RedisClient.zRemoveKey(USER_LOGIN_ATTEMPTS + username);
+
+        // 用户封禁情况
+        boolean isBlock = authorBlockListService.authorInBlockList(userId);
+        if (isBlock) {
+            String userBlockTime = authorBlockListService.getUserBlockTime(userId);
+            throw ExceptionUtil.of(StatusEnum.USER_BLOCKED, userBlockTime);
+        }
         ReqInfoContext.getReqInfo().setUserId(userId);
         return userSessionHelper.genSession(userId);
     }
@@ -173,13 +180,10 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String loginByUserPwd(String username, String password) {
         UserDO user = userDao.getUserByUserName(username);
-        if (user == null) {
-            throw ExceptionUtil.of(StatusEnum.USER_NOT_EXISTS, "userName=" + username);
-        }
 
         // passwordEncoder.matches(password, user.getPassword());
 
-        if (!userPwdEncoder.match(password, user.getPassword())) {
+        if (user == null || !userPwdEncoder.match(password, user.getPassword())) {
             throw ExceptionUtil.of(StatusEnum.USER_PWD_ERROR);
         }
 
@@ -235,7 +239,7 @@ public class LoginServiceImpl implements LoginService {
         UserDO user = userDao.getUserByUserName(loginReq.getUsername());
         if (user != null) {
             // 3.1 用户名已经存在
-            throw ExceptionUtil.of(StatusEnum.USER_LOGIN_NAME_REPEAT, loginReq.getUsername());
+            throw ExceptionUtil.of(StatusEnum.USER_EXISTS, loginReq.getUsername());
         } else {
             //4. 走用户注册流程
             userId = registerService.registerByUserNameAndPassword(loginReq);

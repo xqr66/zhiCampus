@@ -4,6 +4,7 @@ import com.github.paicoding.forum.api.model.vo.ResVo;
 import com.github.paicoding.forum.api.model.vo.user.dto.BaseUserInfoDTO;
 import com.github.paicoding.forum.core.permission.Permission;
 import com.github.paicoding.forum.core.permission.UserRole;
+import com.github.paicoding.forum.service.user.service.AuthorBlockListService;
 import com.github.paicoding.forum.service.user.service.AuthorWhiteListService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -27,27 +28,27 @@ import java.util.List;
 @RequestMapping(path = {"api/admin/author/blocklist"})
 public class AuthorBlockListController {
     @Autowired
-    private AuthorWhiteListService articleWhiteListService;
+    private AuthorBlockListService articleBlockListService;
 
     @GetMapping(path = "get")
-    @ApiOperation(value = "白名单列表", notes = "返回作者白名单列表")
+    @ApiOperation(value = "封禁列表", notes = "返回封禁列表")
     public ResVo<List<BaseUserInfoDTO>> whiteList() {
-        return ResVo.ok(articleWhiteListService.queryAllArticleWhiteListAuthors());
+        return ResVo.ok(articleBlockListService.queryAllBlockListAuthors());
     }
 
     @GetMapping(path = "add")
-    @ApiOperation(value = "添加白名单", notes = "将指定作者加入作者白名单列表")
-    @ApiImplicitParam(name = "authorId", value = "传入需要添加白名单的作者UserId", required = true, allowEmptyValue = false, example = "1")
-    public ResVo<Boolean> addAuthor(@RequestParam("authorId") Long authorId) {
-        articleWhiteListService.addAuthor2ArticleWhitList(authorId);
+    @ApiOperation(value = "添加封禁用户", notes = "将指定作者加入作者封禁列表")
+    @ApiImplicitParam(name = "authorId", value = "传入需要添加封禁的作者UserId", required = true, allowEmptyValue = false, example = "1")
+    public ResVo<Boolean> addAuthor(@RequestParam("authorId") Long authorId, @RequestParam("blockDays") Integer blockDays) {
+        articleBlockListService.addAuthor2BlockList(authorId, blockDays);
         return ResVo.ok(true);
     }
 
     @GetMapping(path = "remove")
-    @ApiOperation(value = "删除白名单", notes = "将作者从白名单列表")
-    @ApiImplicitParam(name = "authorId", value = "传入需要删除白名单的作者UserId", required = true, allowEmptyValue = false, example = "1")
+    @ApiOperation(value = "删除封禁", notes = "将作者从封禁列表删除")
+    @ApiImplicitParam(name = "authorId", value = "传入需要删除封禁的作者UserId", required = true, allowEmptyValue = false, example = "1")
     public ResVo<Boolean> rmAuthor(@RequestParam("authorId") Long authorId) {
-        articleWhiteListService.removeAuthorFromArticleWhiteList(authorId);
+        articleBlockListService.removeAuthorFromBlockList(authorId);
         return ResVo.ok(true);
     }
 }

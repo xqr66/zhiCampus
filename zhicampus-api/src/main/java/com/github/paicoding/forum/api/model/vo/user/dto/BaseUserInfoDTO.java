@@ -89,4 +89,9 @@ public class BaseUserInfoDTO extends BaseDTO {
      */
     @ApiModelProperty(value = "用户的收款码", example = "{\"wx\":\"wxp://f2f0YUXuGn6X2dI6FS2GrMjuG0Lw2plZqwjO4keoZaRr320\"}")
     private String payCode;
+
+    /**
+     * 封禁时间
+     */
+    private String blockTime;
 }

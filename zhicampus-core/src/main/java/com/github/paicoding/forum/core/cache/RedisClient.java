@@ -3,7 +3,9 @@ package com.github.paicoding.forum.core.cache;
 import com.github.paicoding.forum.core.util.JsonUtil;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.dao.DataAccessException;
+
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.RedisCallback;
@@ -12,11 +14,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -400,6 +398,29 @@ public class RedisClient {
         });
     }
 
+    /**
+     * 查询 ZSet 中 score 大于 minScore 的所有 member
+     * @param key Redis 键
+     * @param minScore 最小 score（不包含，如果要包含可以用 "(minScore"）
+     * @return 符合条件的 member 集合
+     */
+    public static<T> Set<T> zGetMembersByScoreGreaterThan(String key, double minScore, Class<T> clz) {
+        return template.execute(new RedisCallback<Set<T>>() {
+            @Override
+            public Set<T> doInRedis(RedisConnection connection) throws DataAccessException {
+                // 使用 ZRANGEBYSCORE 查询 score > minScore 的所有 member
+                Set<byte[]> membersBytes = connection.zSetCommands().zRangeByScore(
+                        keyBytes(key),
+                        RedisZSetCommands.Range.range().gt(minScore)// 无上限
+                );
+
+                // 将 byte[] 转换为 Object（根据你的序列化方式调整）
+                return membersBytes.stream().map(s -> toObj(s, clz)).collect(Collectors.toSet());
+
+            }
+        });
+    }
+
 
     /**
      * 向ZSet中添加元素
@@ -429,6 +450,22 @@ public class RedisClient {
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
                 Long deleted = connection.del(keyBytes(key));
                 return deleted != null && deleted > 0;
+            }
+        });
+    }
+
+    /**
+     * 从ZSet中删除指定的member
+     * @param key Redis键
+     * @param member 要删除的成员
+     * @return 是否删除成功(如果member存在并被删除返回true，member不存在返回false)
+     */
+    public static Boolean zRemoveMember(String key, Object member) {
+        return template.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                Long removed = connection.zSetCommands().zRem(keyBytes(key), valBytes(member));
+                return removed != null && removed > 0;
             }
         });
     }

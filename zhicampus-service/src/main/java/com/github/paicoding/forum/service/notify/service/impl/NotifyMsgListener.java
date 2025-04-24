@@ -83,18 +83,15 @@ public class NotifyMsgListener<T> implements ApplicationListener<NotifyMsgEvent<
                 removeFollowNotify((NotifyMsgEvent<UserRelationDO>) msgEvent);
                 break;
             case LOGIN:
-                // todo 用户登录，判断是否需要插入新的通知消息，暂时先不做
+
                 break;
             case REGISTER:
                 // 首次注册，插入一个欢迎的消息
                 saveRegisterSystemNotify((Long) msgEvent.getContent());
                 break;
             case PAYING:
-            case PAY:
-                // 文章支付回调/支付中的消息通知
-                savePayNotify((NotifyMsgEvent<ArticlePayRecordDO>) msgEvent);
             default:
-                // todo 系统消息
+
         }
     }
 

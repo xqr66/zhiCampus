@@ -10,6 +10,7 @@ import com.github.paicoding.forum.core.util.SessionUtil;
 import com.github.paicoding.forum.service.notify.service.NotifyService;
 import com.github.paicoding.forum.service.sitemap.service.SitemapService;
 import com.github.paicoding.forum.service.statistics.service.UserStatisticService;
+import com.github.paicoding.forum.service.user.service.AuthorBlockListService;
 import com.github.paicoding.forum.service.user.service.LoginService;
 import com.github.paicoding.forum.service.user.service.UserService;
 import com.github.paicoding.forum.web.config.GlobalViewConfig;
@@ -37,6 +38,9 @@ public class GlobalInitService {
     private String env;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    AuthorBlockListService authorBlockListService;
 
     @Resource
     private GlobalViewConfig globalViewConfig;
@@ -115,7 +119,7 @@ public class GlobalInitService {
 
     public void initLoginUser(String session, ReqInfoContext.ReqInfo reqInfo) {
         BaseUserInfoDTO user = userService.getAndUpdateUserIpInfoBySessionId(session, null);
-        if (user != null) {
+        if (user != null && !authorBlockListService.authorInBlockList(user.getUserId())) {
             reqInfo.setSession(session);
             reqInfo.setUserId(user.getUserId());
             reqInfo.setUser(user);

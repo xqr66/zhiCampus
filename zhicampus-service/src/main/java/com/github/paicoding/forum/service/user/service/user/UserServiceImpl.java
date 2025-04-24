@@ -225,7 +225,7 @@ public class UserServiceImpl implements UserService {
             user.setId(loginReq.getUserId());
         } else if (!Objects.equals(loginReq.getUserId(), user.getId())) {
             // 登录用户名已经存在了
-            throw ExceptionUtil.of(StatusEnum.USER_LOGIN_NAME_REPEAT, loginReq.getUsername());
+            throw ExceptionUtil.of(StatusEnum.USER_EXISTS, loginReq.getUsername());
         }
 
         // 1. 更新用户名密码
